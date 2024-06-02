@@ -1,0 +1,82 @@
+<!--ANALYSIS VIEW-->
+<!--Load and extentions-->
+{% extends 'app/base.html' %}
+{% load static %}
+
+<!--Main Block-->
+{% block content %}
+
+    <!--Title-->
+    <div class="my-3 mx-3">
+        <h1 class="mb-4">Dashboard </h1>
+    </div>
+    <!--Subtitle-->
+    <div class="my-3 mx-3">
+        <h2 class="mb-4">Trend Analysis </h2>
+    </div>
+    <!-- Trends Graphs -->
+    <!-- Form for the first trend graph -->
+    <form method="GET" action="{% url 'app:dashboard' %}" class="date-form">
+        <div class="form-group">
+            <label for="start">Start:</label>
+            {% if not form.start.value %}
+                <input type="date" name="start" value="{{ default_start }}">
+            {% else %}
+                {{ form.start }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="end">End:</label>
+            {% if not form.end.value %}
+                <input type="date" name="end" value="{{ default_end }}">
+            {% else %}
+                {{ form.end }}
+            {% endif %}
+        </div>
+        <div class="form-group">
+            <label for="variable">Variable:</label>
+            {% if not form.variable.value %}
+                <select name="variable" class="form-control">
+                    <option value="temperature" {% if default_variable == "temperature" %}selected{% endif %}>Temperature</option>
+                    <option value="humidity" {% if default_variable == "humidity" %}selected{% endif %}>Humidity</option>
+                    <option value="power_consumption" {% if default_variable == "power_consumption" %}selected{% endif %}>Power Consumption</option>
+                    <!-- Add more options as needed -->
+                </select>
+            {% else %}
+                {{ form.variable }}
+            {% endif %}
+        </div>
+        <button type="submit" class="btn-submit">Submit</button>
+    </form>
+    <div>
+        {{ chart1|safe }}
+    </div>
+
+    <!-- Additional charts for each zone -->
+    <div>
+        {% for zone, chart in zone_charts.items %}
+            <div>
+                {{ chart|safe }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Container for histograms -->
+    <div class="container">
+        <div class="row justify-content-center">
+          {% for zone, histogram in histogram_charts.items %}
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <div class="histogram-container">
+                {{ histogram|safe }}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+
+{% endblock %}
+
+<!--Load Java Scripts-->
+{% block scripts %}
+<script src="https://d3js.org/d3.v6.min.js"></script>
+{% endblock scripts %}

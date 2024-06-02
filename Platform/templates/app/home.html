@@ -1,0 +1,28 @@
+{% extends 'app/base.html' %}
+
+{% block title %}
+Home
+{% endblock title%}
+
+
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <h1>Welcome to Our Data Analytics Platform</h1>
+        <p>Unlock the power of your data with our comprehensive analytics tools.</p>
+        {% if user.is_authenticated %}
+        <a href="{% url 'app:home' %}" class="btn btn-primary btn-lg">Go to Dashboard</a>
+        {% else %}
+        <a href="{% url 'users:register' %}" class="btn btn-primary btn-lg">Register</a>
+        <a href="{% url 'users:login' %}" class="btn btn-secondary btn-lg">LogIn</a>
+        {% endif %}
+    </div>
+</section>
+
+</br>
+</br>
+
+
+{% endblock %}

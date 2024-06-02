@@ -1,0 +1,50 @@
+<!--MAIN PAGE AFTER LOGGIN-->
+<!--Load and extentions-->
+{% extends 'app/base.html' %}
+{% load static%}
+
+<!--Main Block-->
+{% block content %}
+
+    <!--Dynamic Title-->
+    <div class="my-3 mx-3">
+        <h1 class="mb-4">Welcome</h1>
+    </div>
+
+    <!--Graph summaries-->
+    <div class="d-flex flex-wrap justify-content-between">
+    <!--First Indicator-->
+    <div class="card mx-2" style="flex: 1; min-width: 300px; margin: 10px;">
+        <div class="card-body">
+            <h5 class="card-title text-primary">Zone 1</h5>
+            <div>
+                <canvas id="graph1"></canvas>
+            </div>
+        </div>
+    </div>
+    <!--Second Indicator-->
+    <div class="card mx-2" style="flex: 1; min-width: 300px; margin: 10px;">
+        <div class="card-body">
+            <h5 class="card-title text-primary">Zone 2</h5>
+            <div>
+                <canvas id="graph2"></canvas>
+            </div>
+        </div>
+    </div>
+    <!--Third Indicator-->
+    <div class="card mx-2" style="flex: 1; min-width: 300px; margin: 10px;">
+        <div class="card-body">
+            <h5 class="card-title text-primary">Zone 3</h5>
+            <div>
+                <canvas id="graph3"></canvas>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
+<!--Load Java Scripts-->
+{% block scripts %}
+<script src="https://d3js.org/d3.v6.min.js"></script>
+<script src="{% static 'js/index.js' %}"></script>
+{% endblock scripts %}

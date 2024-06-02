@@ -1,0 +1,36 @@
+{% extends 'app/base.html' %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Power Consumption Data</title>
+</head>
+<body>
+    <h1>Power Consumption Data</h1>
+    <table border="1">
+        <tr>
+            <th>Date</th>
+            <th>Temperature</th>
+            <th>Humidity</th>
+            <th>Wind Speed</th>
+            <th>General Diffuse Flows</th>
+            <th>Diffuse Flows</th>
+            <th>Zone 1 Power Consumption</th>
+            <th>Zone 2 Power Consumption</th>
+            <th>Zone 3 Power Consumption</th>
+        </tr>
+        {% for entry in data %}
+        <tr>
+            <td>{{ entry.date }}</td>
+            <td>{{ entry.temperature }}</td>
+            <td>{{ entry.humidity }}</td>
+            <td>{{ entry.wind_speed }}</td>
+            <td>{{ entry.general_diffuse_flows }}</td>
+            <td>{{ entry.diffuse_flows }}</td>
+            <td>{{ entry.zone_1_power_consumption }}</td>
+            <td>{{ entry.zone_2_power_consumption }}</td>
+            <td>{{ entry.zone_3_power_consumption }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
